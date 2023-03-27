@@ -4,5 +4,6 @@ services:
     env:
       NODE_ENV: production
       API_URL: https://api.github.com
+      API_KEY: "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"
     buildCommand: npm run build
     startCommand: node server.js
