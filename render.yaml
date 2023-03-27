@@ -1,0 +1,7 @@
+services:
+  - name: my-backend-service
+    type: web
+    env:
+      NODE_ENV: production
+    buildCommand: npm run build
+    startCommand: node server.js
