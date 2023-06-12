@@ -1,10 +1,16 @@
 const axios = require('axios');
-const token = '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';
+const token = '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';
 const BASE_URL = 'https://api.github.com';
 
 exports.listUsers = async (req, res) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   try {
-    const response = await axios.get(`${BASE_URL}/users`);
+    const response = await axios.get(`${BASE_URL}/users`, config);
     const page = parseInt(req.query.page || 1);
     const limit = parseInt(req.query.limit || 10);
     const offset = (page - 1) * limit;
@@ -41,7 +47,7 @@ exports.getUserRepos = async (req, res) => {
   try {
     const { username } = req.params;
     const url = `${BASE_URL}/users/${username}/repos`;
-    const response = await axios.get(url);
+    const response = await axios.get(url, config);
     res.send(response.data);
   } catch (err) {
     res.json(err);
